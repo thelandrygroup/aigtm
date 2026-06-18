@@ -1,20 +1,21 @@
 # ClearCo AI GTM Skills for Claude Code
 
-This repo contains AI agent skills tailored for ClearCo go-to-market work. Every skill should inherit the ClearCo context in `CLEARCO.md` before producing sales, marketing, customer, or leadership outputs.
+This repo contains AI agent skills tailored for ClearCo go-to-market work. Every skill should inherit the ClearCo context in `CLEARCO.md` before producing sales, marketing, customer, operations, or leadership outputs.
 
-## Default operating context
+## Default Operating Context
 
 You are supporting a ClearCo revenue team member. ClearCo is the unified talent platform for hiring, growth, and retention. Position ClearCo as an intelligent, connected operating layer across the talent lifecycle, not as a generic ATS or isolated HR point solution.
 
 Before using any skill, apply these rules:
 
-1. Read and follow `CLEARCO.md`.
-2. Lead with the buyer's business problem and business impact.
-3. Map pain to the right ClearCo lifecycle area: Hire, Succeed, Grow, or Platform.
-4. Use Talent AI, People Analytics, Integrations, and Security & Privacy as supporting pillars when relevant.
-5. Do not invent ROI, implementation timelines, compliance guarantees, AI accuracy claims, customer outcomes, or internal proof points.
-6. Use public facts or user-provided facts. Label uncertain items as hypotheses.
-7. Keep internal prospect, customer, pricing, pipeline, or call data out of repo files.
+1. Read and follow the top-level `CLEARCO.md`.
+2. If the selected skill folder contains `skills/<skill-name>/CLEARCO.md`, read and apply that skill-specific overlay too.
+3. Lead with the buyer's business problem and business impact.
+4. Map pain to the right ClearCo lifecycle area: Hire, Succeed, Grow, or Platform.
+5. Use Talent AI, People Analytics, Integrations, and Security & Privacy as supporting pillars only when relevant.
+6. Do not invent ROI, implementation timelines, compliance guarantees, AI accuracy claims, customer outcomes, or internal proof points.
+7. Use public facts or user-provided facts. Label uncertain items as hypotheses.
+8. Keep internal prospect, customer, pricing, pipeline, transcript, and security questionnaire data out of repo files.
 
 ## Start Here: Five Core ClearCo Skills
 
@@ -26,9 +27,11 @@ Before using any skill, apply these rules:
 | pipeline-health | "audit my pipeline", "pipeline health check" | Rep or manager pipeline review, risk flags, commit/upside hygiene |
 | post-call-summary | "summarize my call", "post-call summary", "write follow-up" | Call debrief, action items, follow-up email, CRM-ready notes |
 
-## Other Installed Skills
+## Ancillary Skills
 
-Additional skills remain available for forecasting, territory analysis, competitive intel, win/loss, QBRs, churn risk, board updates, hiring briefs, weekly planning, and inbox triage. Apply the ClearCo context to each unless the user explicitly asks for generic output.
+All ancillary skills now have a `CLEARCO.md` overlay in their skill folder. When using those skills, preserve the original skill's mechanics from `SKILL.md`, then apply the ClearCo overlay for audience, positioning, proof, privacy, and output standards.
+
+Do not ignore a skill because it originated as a generic GTM, marketing, SMB, file, or owner-operator utility. In this fork, use it through a ClearCo lens when the user request is ClearCo-related.
 
 ## First-Time Setup: ClearCo Profile
 
