@@ -1,0 +1,1 @@
+Use the shared ClearCo context for this folder. Keep work aligned to Hire, Succeed, Grow, and Platform. Keep sensitive customer and commercial details out of repo files.
