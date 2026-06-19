@@ -63,7 +63,7 @@ The other skills extend this motion into forecasting, marketing, proposals, cust
 ### macOS
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/thelandrygroup/aigtm/main/setup/bootstrap.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/clearcoai/aigtm/main/setup/bootstrap.sh)"
 ```
 
 This installs Homebrew, Node.js, Python, Claude Code, content tools, optional public CLIs, BYOK `.env` scaffolding, and all skills. It then links the skills into `~/.claude/skills/`.
@@ -77,7 +77,7 @@ This installs Homebrew, Node.js, Python, Claude Code, content tools, optional pu
 ### Windows PowerShell
 
 ```powershell
-git clone https://github.com/thelandrygroup/aigtm.git $env:USERPROFILE\claude\aigtm
+git clone https://github.com/clearcoai/aigtm.git $env:USERPROFILE\claude\aigtm
 ~\claude\aigtm\setup\bootstrap.ps1
 ```
 
@@ -90,7 +90,7 @@ No terminal required. See [`COWORK.md`](COWORK.md).
 Use the repo URL:
 
 ```text
-https://github.com/thelandrygroup/aigtm
+https://github.com/clearcoai/aigtm
 ```
 
 ---
