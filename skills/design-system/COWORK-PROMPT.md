@@ -9,7 +9,7 @@ CONTEXT — what you're building on top of:
 
 The starting template is a self-contained HTML file with a sticky sidebar TOC; a color palette section (12 swatches: brand, neutrals, semantic); typography ramps (H1 → mono, 8 ramps); buttons (primary / secondary / ghost in 3 sizes); cards; badges; forms; navigation; and a composed page preview at the bottom. Every brand decision lives in CSS variables in :root at the top of the file. Fetch the template here:
 
-https://raw.githubusercontent.com/GTMify/aigtm/main/skills/design-system/template.html
+https://raw.githubusercontent.com/thelandrygroup/aigtm/main/skills/design-system/template.html
 
 MY BRAND ANSWERS (fill these in):
 
@@ -72,6 +72,6 @@ That's it. After you reply, I'll save the block as <my-brand-name>-design-system
 
 ## How this works under the hood
 
-This is a skill from the [aigtm](https://github.com/GTMify/aigtm) toolkit. The template lives at [`skills/design-system/template.html`](template.html) in the repo. The full SKILL.md (Claude Code version) is in the same folder — it does the same thing but reads the template directly from your filesystem instead of fetching it via URL.
+This is a skill from the [aigtm](https://github.com/thelandrygroup/aigtm) toolkit. The template lives at [`skills/design-system/template.html`](template.html) in the repo. The full SKILL.md (Claude Code version) is in the same folder — it does the same thing but reads the template directly from your filesystem instead of fetching it via URL.
 
 Same Six-Layer Power Prompt Stack as every other skill in the repo. Layer 1 (Context) = your brand. Layer 6 (Output Spec) = a single fenced HTML block. The skill is the framework.

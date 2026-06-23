@@ -1,213 +1,264 @@
-# Customizing Your AI GTM Skills
+# Customizing ClearCo AI GTM Skills
 
-The 16 skills in this repo work out of the box, but they work **dramatically better** when Claude knows who you are, what you sell, and who you sell to. This guide shows you how to go from generic outputs to outputs that sound like they came from someone on your team.
+This repo is already tailored for ClearCo. Customize only the context that changes by rep, manager, segment, territory, approved proof, current competitors, and operating cadence.
 
----
-
-## Your CLAUDE.md Is the Control Center
-
-Every time Claude Code starts a session, it reads `~/.claude/CLAUDE.md`. This file is your persistent context — it tells Claude your role, your company, your ICP, and your competitive landscape. Every skill reads this context automatically.
-
-**The difference is significant.** Here's what Meeting Prep produces without and with company context:
-
-| Without context | With context |
-|----------------|-------------|
-| "This company may benefit from automation solutions" | "Meridian's 6 open RevOps roles suggest they're building the analytics function your platform replaces — position around time-to-value vs. hiring" |
-| Generic conversation starters | Questions that reference your specific product's strengths against their likely pain points |
-| No competitive awareness | Flags when a prospect is using a competitor's product and suggests differentiation angles |
-
-The onboarding flow created a starter CLAUDE.md when you first launched Claude Code. Now it's time to make it great.
+The goal is not to make Claude sound clever. The goal is to make it safer, sharper, and more useful for ClearCo revenue execution.
 
 ---
 
-## 1. Add Your Company Context
+## 1. Understand the Context Layers
 
-Open `~/.claude/CLAUDE.md` in any text editor, or ask Claude: "Update my CLAUDE.md to add more company context."
+ClearCo context is now layered in four places:
 
-Add a section like this:
+| Layer | File | Purpose |
+|------|------|---------|
+| Repo-wide context | `CLEARCO.md` | Shared ClearCo positioning, personas, proof guardrails, and public-safe rules |
+| Runtime context | `CLAUDE.md` | Tells Claude Code to apply ClearCo context before every skill |
+| Skill overlay | `skills/<skill>/CLEARCO.md` | Skill-specific ClearCo use cases and guardrails |
+| Personal context | `~/.claude/CLAUDE.md` | Your role, territory, quota, current accounts, competitors, tools, and preferences |
+
+Do not store customer-private or deal-private details in committed repo files. Put those into a live session or a private local profile only when appropriate.
+
+---
+
+## 2. Customize Your Personal ClearCo Profile
+
+Open `~/.claude/CLAUDE.md` or ask Claude Code to update it.
+
+Use this structure:
 
 ```markdown
-## My Company — Deep Context
+# Claude Code — ClearCo GTM Configuration
 
-**What we sell:** [Product name] — [one paragraph explaining what it does, who uses it, and why they buy it]
+## About Me
 
-**Value propositions:**
-1. [Primary value prop — the one that wins deals]
-2. [Secondary value prop]
-3. [Third value prop]
+[Name], [Title] at ClearCo. I cover [segment/territory] and focus on [new business / AM / partner / leadership / ops].
 
-**Proof points:**
-- [Customer name] achieved [specific result] in [timeframe]
-- [Metric]: [X]% improvement for [customer segment]
-- [Award, analyst recognition, or third-party validation]
+## My Current Focus
 
-**Pricing context:**
-- Average deal size: $[X]
-- Pricing model: [per seat / platform fee / usage-based]
-- Common objection: "[price objection]" → Our response: "[how you handle it]"
+- **Quarterly target:** [quota or team goal]
+- **Top priorities:** [pipeline creation, late-stage deal execution, renewals, expansion, enablement, forecast hygiene]
+- **Must-win accounts:** [optional; keep private if sensitive]
+
+## My ICP / Territory
+
+- **Best-fit industries:** [your verticals]
+- **Company size:** [employee count / revenue / locations]
+- **Buying triggers:** [new HR leadership, hiring growth, retention pressure, ATS renewal, HCM consolidation, multi-location expansion, compliance pressure]
+- **Disqualification signals:** [too small, no HR owner, no active talent priority, bad timing, locked into incumbent]
+
+## Approved ClearCo Proof
+
+- [Approved public customer example or internal-approved reference]
+- [Metric with source and caveat]
+- [Security/privacy proof allowed in sales cycles]
+
+## Competitors / Incumbents
+
+| Competitor or category | How to position fairly |
+|------------------------|------------------------|
+| ATS point solution | Recruiting workflow may be covered, but lifecycle data and employee growth may remain disconnected |
+| Enterprise HCM suite | Broad system of record, but often heavier workflows and slower talent-team agility |
+| Performance / engagement point tool | Useful in one workflow, but weaker if hiring, performance, development, and retention are disconnected |
+
+## Tools and Formats
+
+- **CRM:** [Salesforce / HubSpot / other]
+- **Call recorder:** [Gong / Zoom / other]
+- **Forecast format:** [team format]
+- **Follow-up tone:** [direct / executive / conversational]
 ```
 
-**Why this matters:** When you run Prospect Research, Claude uses your value props to write personalized emails. When you run Deal Strategy, it uses your proof points to recommend which reference customers to deploy. When you run Objection Handler, it uses your pricing context to craft responses.
+---
+
+## 3. Add Approved Proof Without Creating Risk
+
+Proof is where AI outputs become dangerous if not constrained.
+
+Use this rule:
+
+> If the proof is not public, user-provided in-session, or internally approved for that specific use, do not use it.
+
+Good proof entries include:
+
+```markdown
+## Approved Proof Library
+
+### Public proof
+- ClearCo is trusted by [approved public stat + source].
+- [Customer] achieved [specific outcome] according to [public source].
+
+### Internal-approved proof
+- [Reference/customer] may be used in [segment/use case] when approved by [team/process].
+
+### Security proof
+- SOC 2 Type II: allowed in security/procurement conversations.
+- Encryption, access controls, SSO, and AWS hosting: use only with approved wording.
+
+### Forbidden unless explicitly provided
+- Unapproved ROI percentages
+- Guaranteed implementation timelines
+- AI accuracy claims
+- Compliance guarantees
+- Non-public customer outcomes
+- Pricing concessions
+```
 
 ---
 
-## 2. Define Your ICP Deeply
+## 4. Customize ICP and Buying Signals
 
-The onboarding flow asked for industry and company size. Go deeper:
+Add segment-specific signals to your local profile.
 
 ```markdown
-## Ideal Customer Profile — Detailed
+## ICP Detail
 
 **Best-fit companies:**
-- Industry: [specific verticals, not just "SaaS"]
-- Size: [employee count AND revenue range]
-- Stage: [Series B-D / mid-market / enterprise]
-- Tech stack signals: [tools they use that indicate fit — e.g., "Salesforce Enterprise, Snowflake, already using a BI tool"]
-- Buying triggers: [events that create urgency — e.g., "just raised a round", "new CRO hired", "scaling past 50 reps"]
+- Industry: [specific verticals]
+- Size: [employee count, locations, hiring volume]
+- Workforce complexity: [hourly, distributed, healthcare, services, franchise, manufacturing, etc.]
+- Talent triggers: [ATS renewal, high-volume hiring, onboarding gaps, performance cycle pain, learning/compliance pressure]
+- Systems trigger: [multiple HR tools, manual spreadsheets, HCM suite dissatisfaction, integration pressure]
+
+**Persona priority:**
+1. [Persona] — cares about [business problem]
+2. [Persona] — cares about [business problem]
+3. [Persona] — cares about [business problem]
 
 **Disqualification signals:**
-- [e.g., "Under 20 reps — too small for our platform"]
-- [e.g., "Already using [competitor] with a 2-year contract"]
-- [e.g., "No dedicated RevOps or Sales Ops function"]
-
-**Target personas (in priority order):**
-1. [Title] — they care about [what], they evaluate based on [what]
-2. [Title] — they care about [what], they evaluate based on [what]
-3. [Title] — they care about [what], they evaluate based on [what]
+- [Signal]
+- [Signal]
+- [Signal]
 ```
 
-**Why this matters:** Pipeline Health uses disqualification signals to flag deals that shouldn't be in your pipeline. Prospect Research uses buying triggers to find the most timely personalization hooks. Territory Analyzer uses ICP criteria to identify whitespace.
+This helps Meeting Prep, Prospect Research, Deal Strategy, Pipeline Health, Territory Analyzer, Forecast Narrative, and Win/Loss Analyzer separate real opportunities from noise.
 
 ---
 
-## 3. Add Your Competitor Playbook
+## 5. Customize Competitive Playbooks
 
-The onboarding asked for competitor names. Now add the intel that wins deals:
+Keep competitive positioning fair and evidence-based.
 
 ```markdown
 ## Competitive Playbook
 
-### vs. [Competitor 1]
-- **Their pitch:** [How they position themselves]
-- **Where they win:** [Their genuine strengths]
-- **Where we win:** [Our genuine advantages]
-- **Trap questions to plant:** ["Can you show me how [specific workflow] works?" — exposes their weakness in [area]]
-- **Proof point:** [Customer who evaluated both and chose us, with reasoning]
-- **Watch for:** [Signal that a prospect is already talking to them — e.g., "they mention 'AI forecasting' which is their positioning"]
-
-### vs. [Competitor 2]
-[Same structure]
+### vs. [Competitor or category]
+- **Their likely pitch:** [what they credibly sell]
+- **Where they are strong:** [real strength]
+- **Where ClearCo is stronger:** [specific lifecycle/platform advantage]
+- **Decision criteria to test:** [question]
+- **Fair trap question:** [question that exposes lifecycle, data, workflow, analytics, AI, or implementation gap]
+- **Proof to use:** [approved proof only]
+- **Do not say:** [unapproved or risky claim]
 ```
 
-**Why this matters:** Deal Strategy uses trap questions in its competitive positioning section. Competitive Intel knows what to monitor for each competitor. Objection Handler crafts responses specific to each competitor's pitch.
+The strongest competitive work is not vendor bashing. It helps the buyer clarify what kind of system they actually need.
 
 ---
 
-## 4. Customize Output Formats
+## 6. Customize CRM and Forecast Formats
 
-Each skill has a SKILL.md file that defines its output format. You can edit these to match your team's templates.
-
-**Where skills live:** `~/.claude/skills/[skill-name]/SKILL.md`
-
-**Common customizations:**
-
-**Match your CRM fields:**
-If your CRM uses specific field names, update the output format in the skill:
-```markdown
-## Output Format
-- **Salesforce Opportunity Name:** [Company] - [Product] - [Quarter]
-- **Stage:** [Your stage names, not the default ones]
-- **Next Step (CRM field):** [Action by date]
-```
-
-**Add your team's templates:**
-If your team has a standard deal review template or QBR format, paste it into the relevant SKILL.md and tell Claude to use that format.
-
-**Adjust stage probabilities:**
-Pipeline Health uses default stage probabilities (Discovery: 10%, Qualification: 20%, etc.). If your company uses different numbers:
-```markdown
-## Stage Probabilities (override defaults)
-- Prospecting: 5%
-- Discovery: 15%
-- Solution Design: 35%
-- Proposal: 55%
-- Negotiation: 75%
-- Verbal: 90%
-```
-
----
-
-## 5. Chain Skills Together
-
-Individual skills are useful. Chained workflows are transformative. Here are proven sequences:
-
-**Pre-call to post-call pipeline update:**
-1. Run **Meeting Prep** before the call
-2. After the call, run **Post-Call Summary** with your notes
-3. Weekly, run **Pipeline Health** to see how your deals shifted
-
-Tell Claude: "Prep me for my call with Acme Corp. After the call I'll give you my notes and we'll do a post-call summary, then update my pipeline."
-
-**Account pursuit sequence:**
-1. Run **Prospect Research** on your target accounts
-2. For accounts that engage, run **Deal Strategy** to build the plan
-3. As deals progress, run **Objection Handler** when you hit resistance
-4. At end of quarter, run **Win/Loss Analyzer** on the outcomes
-
-**Forecast prep:**
-1. Run **Pipeline Health** on your full pipeline
-2. Run **Forecast Narrative** using the health check output
-3. Run **Territory Analyzer** if you manage a team
-
-Each skill's output becomes context for the next one. Claude remembers the previous outputs within the same session.
-
----
-
-## 6. Add Guardrails and Compliance Rules
-
-For enterprise GTM teams that need compliance controls:
+If your team uses specific CRM fields, stage names, or forecast categories, add them locally.
 
 ```markdown
-## Guardrails
+## CRM / Forecast Rules
 
-**Suppression list:** Never research, draft outreach for, or include in any analysis:
-- [List of companies — e.g., existing customers, do-not-contact list]
-- [List of domains — e.g., competitor employees]
+**Opportunity fields to preserve:**
+- Opportunity Name
+- Stage
+- Forecast Category
+- Close Date
+- Amount
+- Next Step
+- Champion
+- Economic Buyer
+- Competitor
+- Mutual Action Plan
 
-**Compliance rules:**
-- All outreach must include an unsubscribe mechanism reference
-- Never reference personal information (family, health, politics)
-- Flag any prospect in [regulated industry] for legal review before outreach
-- All deal values over $[threshold] require VP approval — flag in action plans
+**Stage probabilities:**
+- Discovery: [x]%
+- Evaluation: [x]%
+- Proposal: [x]%
+- Procurement: [x]%
+- Contract: [x]%
 
-**Data handling:**
-- Do not store or reference PII beyond what's needed for the current task
-- Flag any GDPR-relevant prospect (EU-based) for consent verification
+**Forecast categories:**
+- Commit: [definition]
+- Best Case: [definition]
+- Pipeline/Upside: [definition]
+- Pull/Pushed: [definition]
 ```
 
-Add this to your `~/.claude/CLAUDE.md` and every skill will respect these constraints automatically.
+Do not commit official internal stage definitions to this public repo unless they are approved for public use.
 
 ---
 
-## Quick Reference: What to Customize Where
+## 7. Chain ClearCo Skills Together
+
+### Account pursuit flow
+
+1. **Prospect Research** — identify the likely buyer, signal, and ClearCo angle.
+2. **Cold Email** or **Sequence** — convert the angle into outreach.
+3. **Meeting Prep** — prepare for the first conversation.
+4. **Post-Call Summary** — capture pains, next steps, and CRM notes.
+5. **Deal Strategy** — build the path to win once there is an active opportunity.
+6. **Pipeline Health** — inspect risk and forecast quality.
+
+### Manager forecast flow
+
+1. **Pipeline Health** — identify deal risks and coverage gaps.
+2. **Forecast Narrative** — turn the analysis into commit/best-case/upside narrative.
+3. **Territory Analyzer** — inspect rep/team coverage and whitespace.
+4. **Weekly Planner** — convert findings into weekly priorities.
+
+### Customer expansion / retention flow
+
+1. **QBR Builder** — summarize value and next opportunities.
+2. **Churn Early Warning** — identify risk signals.
+3. **Objection Handler** — plan save plays.
+4. **One-Pager** — create a champion-friendly leave-behind.
+
+---
+
+## 8. Add Data Handling Guardrails
+
+Add this locally when working with sensitive data:
+
+```markdown
+## Data Handling Rules
+
+- Do not store customer-private details in repo files.
+- Do not paste confidential customer data into public docs.
+- Do not use unapproved customer names in external-facing copy.
+- Treat pricing, procurement, security questionnaires, pipeline exports, call transcripts, and renewal data as private.
+- If a source is missing, ask for it or label the answer as a hypothesis.
+- Preserve exact buyer language for pain and objections when summarizing calls.
+```
+
+---
+
+## 9. Quick Reference
 
 | What you want to change | Where to change it |
 |------------------------|-------------------|
-| Your role, company, ICP, competitors | `~/.claude/CLAUDE.md` |
-| A specific skill's output format | `~/.claude/skills/[skill-name]/SKILL.md` |
-| Stage probabilities for pipeline analysis | `~/.claude/skills/pipeline-health/SKILL.md` |
-| Suppression lists and compliance rules | `~/.claude/CLAUDE.md` |
-| The Cowork version of a skill | Copy and edit the `COWORK-PROMPT.md` file |
+| Public-safe ClearCo positioning | `CLEARCO.md` |
+| Repo-wide Claude behavior | `CLAUDE.md` |
+| Skill-specific ClearCo guidance | `skills/<skill>/CLEARCO.md` |
+| Your private role/territory/quota/account context | `~/.claude/CLAUDE.md` |
+| Output format for one skill | `skills/<skill>/SKILL.md` |
+| Cowork instructions | `COWORK.md` |
+| API key placeholders | `setup/env.example` locally copied to `~/.claude/.env` |
 
 ---
 
 ## Getting Help
 
-You can always ask Claude to make these changes for you:
+Useful prompts:
 
-- "Add my top 3 competitors to my CLAUDE.md"
-- "Update the pipeline health skill to use our stage names"
-- "Add a suppression list for our existing customers"
-- "Show me my current CLAUDE.md"
+- "Update my local CLAUDE.md for my ClearCo Mid-Market territory."
+- "Add our current competitors to my local profile, but keep it private."
+- "Customize pipeline-health to use our forecast categories."
+- "Create an approved-proof block from these public customer examples."
+- "Show me which ClearCo overlay applies to the proposal skill."
 
-Claude will read the file, make the edit, and confirm what changed.
+Keep repo changes public-safe. Keep live deal context private.
