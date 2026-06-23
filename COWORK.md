@@ -13,7 +13,7 @@ If Cowork has an **Add folder / Connect a knowledge source / GitHub repo** optio
 1. Add a new knowledge source.
 2. Paste the repo URL:
    ```text
-   https://github.com/clearcoai/aigtm
+   https://github.com/thelandrygroup/aigtm
    ```
 3. Tell Cowork to use this as your ClearCo AI GTM skill library.
 4. Use the trigger phrases below.
@@ -27,7 +27,7 @@ Cowork should read the matching `SKILL.md`, the top-level `CLEARCO.md`, and the 
 If Cowork cannot connect to the repo directly, paste this message into a new conversation:
 
 ```text
-Treat https://github.com/clearcoai/aigtm as my ClearCo AI GTM skill library for this conversation.
+Treat https://github.com/thelandrygroup/aigtm as my ClearCo AI GTM skill library for this conversation.
 
 Before running any skill:
 1. Apply the top-level CLEARCO.md context.
