@@ -83,4 +83,4 @@ If you want to extend the template (new sections, dark mode, motion specs), edit
 
 ## License
 
-MIT. Same as the rest of the [aigtm](https://github.com/GTMify/aigtm) toolkit. Pass it along.
+MIT. Same as the rest of the [aigtm](https://github.com/thelandrygroup/aigtm) toolkit. Pass it along.
